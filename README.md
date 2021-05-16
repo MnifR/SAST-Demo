@@ -30,7 +30,7 @@
 ## Install ZSH,tmux, neofetch and Oh-My-ZSH framework
 
 ```shell
-user@hostname:~$ bash <(curl -Ls https://gist.githubusercontent.com/MnifR/7d0dcdb0ec1a6351cd05f7cca71c8b2a/raw/b0baca4e65fa5237aba2bf541b297fc4d17e15e8/install-zsh.sh)
+user@hostname:~$ bash <(wget -nv -O - https://gist.githubusercontent.com/MnifR/7d0dcdb0ec1a6351cd05f7cca71c8b2a/raw/b0baca4e65fa5237aba2bf541b297fc4d17e15e8/install-zsh.sh)
 ```
 
 ## Install Docker CE
