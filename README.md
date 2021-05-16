@@ -27,14 +27,11 @@
 - [Copyright and license](#copyright-and-license)
 
 
-## Install Oh-My-ZSH
+## Install ZSH,tmux, neofetch and Oh-My-ZSH framework
 
-Some text
-
-- Instruction 1
-- Instruction 2
-- Instruction 3
-
+```shell
+user@hostname:~$ bash <(curl -Ls https://gist.githubusercontent.com/MnifR/7d0dcdb0ec1a6351cd05f7cca71c8b2a/raw/b0baca4e65fa5237aba2bf541b297fc4d17e15e8/install-zsh.sh)
+```
 
 ## Install Docker CE
 
