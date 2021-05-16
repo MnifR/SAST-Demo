@@ -27,7 +27,7 @@
 - [Copyright and license](#copyright-and-license)
 
 
-## Quick start
+## Install Oh-My-ZSH
 
 Some text
 
@@ -35,29 +35,70 @@ Some text
 - Instruction 2
 - Instruction 3
 
-## Status
 
-Here goes all the budgets
+## Install Docker CE
 
-## What's included
+Install Docker CE 
 
-Some text
-
-```text
-folder1/
-└── folder2/
-    ├── folder3/
-    │   ├── file1
-    │   └── file2
-    └── folder4/
-        ├── file3
-        └── file4
+```shell
+user@hostname:~$ sudo apt install apt-transport-https ca-certificates curl software-properties-common
+user@hostname:~$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+user@hostname:~$ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+user@hostname:~$ sudo apt update
+user@hostname:~$ sudo apt install docker-ce
+user@hostname:~$ sudo systemctl status docker
+user@hostname:~$ sudo usermod -aG docker ${USER}
 ```
 
-## Bugs and feature requests
+## Install Kubectl
 
-Have a bug or a feature request? Please first read the [issue guidelines](https://reponame/blob/master/CONTRIBUTING.md) and search for existing and closed issues. If your problem or idea is not addressed yet, [please open a new issue](https://reponame/issues/new).
+```shell
+user@hostname:~$ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+user@hostname:~$ sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+user@hostname:~$ sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+user@hostname:~$ echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+user@hostname:~$ sudo apt-get update
+user@hostname:~$ sudo apt-get install -y kubectl
+user@hostname:~$ kubectl version
 
+```
+
+## Install Helm 3
+
+```shell
+user@hostname:~$ curl https://baltocdn.com/helm/signing.asc | sudo apt-key add -
+user@hostname:~$ echo "deb https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+user@hostname:~$ sudo apt-get update
+user@hostname:~$ sudo apt-get install helm
+user@hostname:~$ helm version --short
+```
+
+## Install Kind
+
+```shell
+user@hostname:~$ curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.10.0/kind-linux-amd64
+user@hostname:~$ chmod +x ./kind
+user@hostname:~$ sudo mv ./kind /usr/local/bin/kind
+user@hostname:~$ which kind
+user@hostname:~$ kind version
+user@hostname:~$ kind create cluster --config kind-cluster.yaml
+user@hostname:~$ vim kind-cluster.yaml
+user@hostname:~$ grep server ~/.kube/config
+
+```
+## Install metalLB
+
+```shell
+user@hostname:~$ kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/master/manifests/namespace.yaml
+user@hostname:~$ kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
+user@hostname:~$ kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/master/manifests/metallb.yaml
+user@hostname:~$ which kind
+user@hostname:~$ kind version
+user@hostname:~$ kind create cluster --config kind-cluster.yaml
+user@hostname:~$ vim kind-cluster.yaml
+user@hostname:~$ grep server ~/.kube/config
+
+```
 ## Contributing
 
 Please read through our [contributing guidelines](https://reponame/blob/master/CONTRIBUTING.md). Included are directions for opening issues, coding standards, and notes on development.
