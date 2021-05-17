@@ -78,8 +78,9 @@ user@hostname:~$ chmod +x ./kind
 user@hostname:~$ sudo mv ./kind /usr/local/bin/kind
 user@hostname:~$ which kind
 user@hostname:~$ kind version
-user@hostname:~$ kind create cluster --config kind-cluster.yaml
-user@hostname:~$ vim kind-cluster.yaml
+user@hostname:~$ kind create cluster --name demo
+user@hostname:~$ kind get clusters
+user@hostname:~$ k get nodes
 user@hostname:~$ grep server ~/.kube/config
 
 ```
@@ -108,6 +109,7 @@ user@hostname:~$ helm repo add jenkins https://charts.jenkins.io
 user@hostname:~$ helm repo update
 user@hostname:~$ wget https://raw.githubusercontent.com/jenkinsci/helm-charts/main/charts/jenkins/values.yaml
 user@hostname:~$ code .
+user@hostname:~$ k create ns jenkins
 user@hostname:~$ helm install jenkins jenkins/jenkins -f values.yaml
 user@hostname:~$ k -n jenkins get all -w
 user@hostname:~$ k -n jenkins get secret jenkins -o yaml
