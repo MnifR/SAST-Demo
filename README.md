@@ -89,21 +89,49 @@ user@hostname:~$ grep server ~/.kube/config
 user@hostname:~$ kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/master/manifests/namespace.yaml
 user@hostname:~$ kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 user@hostname:~$ kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/master/manifests/metallb.yaml
-user@hostname:~$ which kind
-user@hostname:~$ kind version
-user@hostname:~$ kind create cluster --config kind-cluster.yaml
-user@hostname:~$ vim kind-cluster.yaml
-user@hostname:~$ grep server ~/.kube/config
+user@hostname:~$ kubectl get pods -n metallb-system --watch
+user@hostname:~$ k -n metallb-system get all
+user@hostname:~$ docker network inspect -f '{{.IPAM.Config}}' kind
+user@hostname:~$ vim metallb-conf.yaml
+user@hostname:~$ k create -f metallb-conf.yaml
+------------- TEST Metal LB--------------
+user@hostname:~$ k create deploy nginx --image nginx
+user@hostname:~$ k get pods -w
+user@hostname:~$ k expose deploy nginx --port 80 --type LoadBalancer
+user@hostname:~$ k create deploy nginx --image nginx
+user@hostname:~$ k get all
+```
+## Install Jenkins with helm
+
+```shell
+user@hostname:~$ helm repo add jenkins https://charts.jenkins.io
+user@hostname:~$ helm repo update
+user@hostname:~$ wget https://raw.githubusercontent.com/jenkinsci/helm-charts/main/charts/jenkins/values.yaml
+user@hostname:~$ code .
+user@hostname:~$ helm install jenkins jenkins/jenkins -f values.yaml
+user@hostname:~$ k -n jenkins get all -w
+user@hostname:~$ k -n jenkins get secret jenkins -o yaml
 
 ```
-## Contributing
 
+## Install Sonarqube with helm
 
-## Creators
+```shell
+user@hostname:~$ helm repo add oteemocharts https://oteemo.github.io/charts
+user@hostname:~$ helm repo update
+user@hostname:~$ k create ns sonarqube
+user@hostname:~$ helm install sonarqube --namespace sonarqube  oteemocharts/sonarqube -f values.yaml
+user@hostname:~$ k -n sonarqube get all -w
+user@hostname:~$ k -n sonarqube logs
+user@hostname:~$ k -n jenkins get all -w
 
+```
 
-## Thanks
+## Install Lens UI 
 
+```shell
+user@hostname:~$ sudo dpkg -i Lens-4.2.4.amd64.deb
+```
 
 ## Copyright and license
 
