@@ -133,6 +133,7 @@ user@hostname:~$ k -n jenkins get all -w
 ## Install Lens UI 
 
 ```shell
+user@hostname:~$ wget https://github.com/lensapp/lens/releases/download/v4.2.4/Lens-4.2.4.amd64.deb
 user@hostname:~$ sudo dpkg -i Lens-4.2.4.amd64.deb
 ```
 
