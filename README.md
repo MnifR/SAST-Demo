@@ -107,6 +107,3 @@ user@hostname:~$ k -n jenkins get all -w
 user@hostname:~$ wget https://github.com/lensapp/lens/releases/download/v4.2.4/Lens-4.2.4.amd64.deb
 user@hostname:~$ sudo dpkg -i Lens-4.2.4.amd64.deb
 ```
-
-## Copyright and license
-
