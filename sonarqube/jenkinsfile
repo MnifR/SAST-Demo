@@ -1,0 +1,37 @@
+pipeline {
+agent any
+tools {nodejs "node-tool"}
+stages {
+ stage("Code Checkout from Github") {
+  steps {
+   git url: 'https://github.com/MnifR/vulnerable-node.git'
+  }
+ }
+ 
+stage('Code Quality Check via SonarQube') {
+   steps {
+       script {
+       def scannerHome = tool 'sonarqube';
+           withSonarQubeEnv("sonarqube") {
+           sh "${tool("sonarqube")}/bin/sonar-scanner \
+           -Dsonar.projectKey=cicd-owasp \
+           -Dsonar.login=admin \
+           -Dsonar.password=admin \
+           -Dsonar.sources=. \
+           -Dsonar.language=js \
+           -Dsonar.sourceEncoding=UTF-8 \
+           -Dsonar.host.url=http://172.18.255.202:9000 "
+
+               }
+           }
+       }
+}
+    stage("Quality Gate") {
+            steps {
+                waitForQualityGate abortPipeline: true
+            }
+        }
+   }
+
+   
+}
