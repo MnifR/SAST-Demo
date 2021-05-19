@@ -41,7 +41,7 @@ pipeline {
         stage('Download Snyk CLI') {
             steps {
                 sh '''
-                    snyk_cli_dl_linux="https://github.com/snyk/snyk/releases/download/v1.592.0/snyk-linux"
+                    snyk_cli_dl_linux="https://github.com/snyk/snyk/releases/download/v1.603.0/snyk-linux"
                     echo "Download URL: ${snyk_cli_dl_linux}"
                     curl -Lo ./snyk "${snyk_cli_dl_linux}"
                     chmod +x snyk
