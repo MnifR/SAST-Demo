@@ -78,7 +78,7 @@ helm repo update
 wget https://raw.githubusercontent.com/jenkinsci/helm-charts/main/charts/jenkins/values.yaml
 vim values.yaml
 kubectl create ns jenkins
-helm install jenkins jenkins/jenkins -f values.yaml
+helm install jenkins --namespace jenkins jenkins/jenkins -f values.yaml
 kubectl -n jenkins get all -w
 kubectl -n jenkins get secret jenkins -o yaml
 kubectl exec --namespace jenkins -it svc/jenkins -c jenkins -- /bin/cat /run/secrets/chart-admin-password && echo
