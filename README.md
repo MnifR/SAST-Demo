@@ -48,7 +48,7 @@ sudo mv ./kind /usr/local/bin/kind
 which kind
 kind version
 sudo kind create cluster --name demo
-kind get clusters
+sudo kind get clusters
 k get nodes
 sudo grep server ~/.kube/config
 
