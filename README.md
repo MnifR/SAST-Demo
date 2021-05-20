@@ -47,10 +47,10 @@ sudo chmod +x ./kind
 sudo mv ./kind /usr/local/bin/kind
 which kind
 kind version
-kind create cluster --name demo
+sudo kind create cluster --name demo
 kind get clusters
 k get nodes
-grep server ~/.kube/config
+sudo grep server ~/.kube/config
 
 ```
 ## Install metalLB
