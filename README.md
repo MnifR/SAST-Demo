@@ -18,6 +18,20 @@ sudo systemctl status docker
 sudo usermod -aG docker ${USER}
 ```
 
+## Install Kind
+
+```shell
+sudo curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.10.0/kind-linux-amd64
+sudo chmod +x ./kind
+sudo mv ./kind /usr/local/bin/kind
+which kind
+kind version
+sudo kind create cluster --name demo
+sudo kind get clusters
+k get nodes
+sudo grep server ~/.kube/config
+
+```
 ## Install Kubectl
 
 ```shell
@@ -39,20 +53,6 @@ sudo apt-get install helm
 helm version --short
 ```
 
-## Install Kind
-
-```shell
-sudo curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.10.0/kind-linux-amd64
-sudo chmod +x ./kind
-sudo mv ./kind /usr/local/bin/kind
-which kind
-kind version
-sudo kind create cluster --name demo
-sudo kind get clusters
-k get nodes
-sudo grep server ~/.kube/config
-
-```
 ## Install metalLB
 
 ```shell
