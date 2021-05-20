@@ -1,7 +1,7 @@
 ## Install ZSH,tmux, neofetch and Oh-My-ZSH framework
 
 ```shell
-bash <(wget -nv -O - https://gist.githubusercontent.com/MnifR/7d0dcdb0ec1a6351cd05f7cca71c8b2a/raw/47232232a5ecee4636fd68eb7c77f24d3af76a0b/install-zsh.sh)
+sudo bash <(wget -nv -O - https://gist.githubusercontent.com/MnifR/7d0dcdb0ec1a6351cd05f7cca71c8b2a/raw/47232232a5ecee4636fd68eb7c77f24d3af76a0b/install-zsh.sh)
 ```
 
 ## Install Docker CE
@@ -10,7 +10,7 @@ Install Docker CE
 
 ```shell
 sudo apt install apt-transport-https ca-certificates curl software-properties-common
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
 sudo apt update
 sudo apt install docker-ce
@@ -32,7 +32,7 @@ kubectl version
 ## Install Helm 3
 
 ```shell
-curl https://baltocdn.com/helm/signing.asc | sudo apt-key add -
+sudo curl https://baltocdn.com/helm/signing.asc | sudo apt-key add -
 echo "deb https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
 sudo apt-get update
 sudo apt-get install helm
@@ -42,7 +42,7 @@ helm version --short
 ## Install Kind
 
 ```shell
-curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.10.0/kind-linux-amd64
+sudo curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.10.0/kind-linux-amd64
 chmod +x ./kind
 sudo mv ./kind /usr/local/bin/kind
 which kind
