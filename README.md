@@ -81,7 +81,6 @@ kubectl create ns jenkins
 helm install jenkins --namespace jenkins jenkins/jenkins -f values.yaml
 kubectl -n jenkins get all -w
 kubectl -n jenkins get secret jenkins -o yaml
-kubectl exec --namespace jenkins -it svc/jenkins -c jenkins -- /bin/cat /run/secrets/chart-admin-password && echo
 
 ```
 
@@ -92,9 +91,8 @@ helm repo add oteemocharts https://oteemo.github.io/charts
 helm repo update
 kubectl create ns sonarqube
 helm install sonarqube --namespace sonarqube  oteemocharts/sonarqube -f values.yaml
-kubectl -n sonarqube get all -w
+kubectl -n sonarqube get all
 kubectl -n sonarqube logs
-kubectl -n jenkins get all -w
 
 ```
 
