@@ -90,6 +90,7 @@ kubectl -n jenkins get secret jenkins -o yaml
 helm repo add oteemocharts https://oteemo.github.io/charts
 helm repo update
 kubectl create ns sonarqube
+wget https://raw.githubusercontent.com/MnifR/SAST-Demo/master/sonarqube/values.yaml
 helm install sonarqube --namespace sonarqube  oteemocharts/sonarqube -f values.yaml
 kubectl -n sonarqube get all
 
