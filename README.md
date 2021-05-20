@@ -79,7 +79,7 @@ wget https://raw.githubusercontent.com/jenkinsci/helm-charts/main/charts/jenkins
 vim values.yaml
 kubectl create ns jenkins
 helm install jenkins --namespace jenkins jenkins/jenkins -f values.yaml
-kubectl -n jenkins get all -w
+kubectl -n jenkins get all
 kubectl -n jenkins get secret jenkins -o yaml
 
 ```
@@ -92,7 +92,6 @@ helm repo update
 kubectl create ns sonarqube
 helm install sonarqube --namespace sonarqube  oteemocharts/sonarqube -f values.yaml
 kubectl -n sonarqube get all
-kubectl -n sonarqube logs
 
 ```
 
