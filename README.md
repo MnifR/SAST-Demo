@@ -28,7 +28,7 @@ which kind
 kind version
 sudo kind create cluster --name demo
 sudo kind get clusters
-k get nodes
+sudo kubectl get nodes
 sudo grep server ~/.kube/config
 
 ```
@@ -60,16 +60,16 @@ kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/master/manife
 kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/master/manifests/metallb.yaml
 kubectl get pods -n metallb-system --watch
-k -n metallb-system get all
+kubectl -n metallb-system get all
 docker network inspect -f '{{.IPAM.Config}}' kind
 vim metallb-conf.yaml
-k create -f metallb-conf.yaml
+kubectl create -f metallb-conf.yaml
 ------------- TEST Metal LB--------------
-k create deploy nginx --image nginx
-k get pods -w
-k expose deploy nginx --port 80 --type LoadBalancer
-k create deploy nginx --image nginx
-k get all
+kubectl create deploy nginx --image nginx
+kubectl get pods -w
+kubectl expose deploy nginx --port 80 --type LoadBalancer
+kubectl create deploy nginx --image nginx
+kubectl get all
 ```
 ## Install Jenkins with helm
 
@@ -78,10 +78,10 @@ helm repo add jenkins https://charts.jenkins.io
 helm repo update
 wget https://raw.githubusercontent.com/jenkinsci/helm-charts/main/charts/jenkins/values.yaml
 vim values.yaml
-k create ns jenkins
+kubectl create ns jenkins
 helm install jenkins jenkins/jenkins -f values.yaml
-k -n jenkins get all -w
-k -n jenkins get secret jenkins -o yaml
+kubectl -n jenkins get all -w
+kubectl -n jenkins get secret jenkins -o yaml
 kubectl exec --namespace jenkins -it svc/jenkins -c jenkins -- /bin/cat /run/secrets/chart-admin-password && echo
 
 ```
@@ -91,11 +91,11 @@ kubectl exec --namespace jenkins -it svc/jenkins -c jenkins -- /bin/cat /run/sec
 ```shell
 helm repo add oteemocharts https://oteemo.github.io/charts
 helm repo update
-k create ns sonarqube
+kubectl create ns sonarqube
 helm install sonarqube --namespace sonarqube  oteemocharts/sonarqube -f values.yaml
-k -n sonarqube get all -w
-k -n sonarqube logs
-k -n jenkins get all -w
+kubectl -n sonarqube get all -w
+kubectl -n sonarqube logs
+kubectl -n jenkins get all -w
 
 ```
 
