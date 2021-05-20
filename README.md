@@ -68,7 +68,6 @@ kubectl create -f metallb-conf.yaml
 kubectl create deploy nginx --image nginx
 kubectl get pods -w
 kubectl expose deploy nginx --port 80 --type LoadBalancer
-kubectl create deploy nginx --image nginx
 kubectl get all
 ```
 ## Install Jenkins with helm
